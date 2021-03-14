@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import UIKit
+
+class DogBreedTableViewCell:UITableViewCell{
+    
+    @IBOutlet weak var dogBreedLabel: UILabel!
+}

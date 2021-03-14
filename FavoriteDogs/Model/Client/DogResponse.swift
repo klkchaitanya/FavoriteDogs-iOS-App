@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import UIKit
+
+struct breedsListResponse: Codable{
+    let status: String
+    let message: [String: [String]]
+}
+
+struct dogImagesResponse: Codable{
+    let status: String
+    let message: [String]
+}

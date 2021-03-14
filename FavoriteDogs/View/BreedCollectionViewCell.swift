@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import UIKit
+
+class BreedCollectionViewCell: UICollectionViewCell{
+    
+    @IBOutlet weak var breedImage: UIImageView!
+    @IBOutlet weak var breedImageActivityIndicator: UIActivityIndicatorView!
+    
+    func setImage(src: UIImage){
+      breedImage.image = src
+    }
+}

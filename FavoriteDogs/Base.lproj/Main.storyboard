@@ -1,24 +1,247 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fs0-gW-9nv">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Dog Breeds-->
+        <scene sceneID="NSQ-Sq-HM1">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="Cff-8r-TFz" customClass="DogBreedViewController" customModule="FavoriteDogs" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ylK-l5-AXp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DogBreedCell" rowHeight="60" id="gPc-tY-TP2" customClass="DogBreedTableViewCell" customModule="FavoriteDogs" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gPc-tY-TP2" id="fiR-wT-Hdv">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qk1-gc-3Wn">
+                                            <rect key="frame" x="30" y="0.0" width="354" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="pUJ-Ux-JpI"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="qk1-gc-3Wn" firstAttribute="top" secondItem="fiR-wT-Hdv" secondAttribute="topMargin" constant="-11" id="00p-fo-avr"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qk1-gc-3Wn" secondAttribute="trailing" constant="10" id="Bzf-W6-HLY"/>
+                                        <constraint firstItem="qk1-gc-3Wn" firstAttribute="leading" secondItem="fiR-wT-Hdv" secondAttribute="leadingMargin" constant="10" id="JS2-ER-RwM"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qk1-gc-3Wn" secondAttribute="bottom" constant="-11" id="JbO-41-nxM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dogBreedLabel" destination="qk1-gc-3Wn" id="LoN-PW-UpF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Cff-8r-TFz" id="kE0-Oi-0Ys"/>
+                            <outlet property="delegate" destination="Cff-8r-TFz" id="IwU-2p-Bw0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Dog Breeds" id="me9-IU-9Ps"/>
+                    <connections>
+                        <outlet property="breedsTableView" destination="ylK-l5-AXp" id="Tox-xP-PNQ"/>
+                        <segue destination="wfq-VZ-yne" kind="presentation" identifier="BreedTableToBreedCollectionSegue" id="skm-ny-M3m"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ppz-Hx-0n4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1318.840579710145" y="112.5"/>
+        </scene>
+        <!--Breed Photo Collection View Controller-->
+        <scene sceneID="qel-mQ-JNs">
+            <objects>
+                <viewController id="wfq-VZ-yne" customClass="BreedPhotoCollectionViewController" customModule="FavoriteDogs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hAM-Qv-pnZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ek-il-d5A">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="lH0-eQ-4Bl">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="8Mk-a6-2CW">
+                                            <connections>
+                                                <action selector="backToBreedTable:" destination="wfq-VZ-yne" id="8T6-kW-61d"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DB3-ND-KQB">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7bI-dO-LNP">
+                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="breedImageCell" id="M7l-EG-r7S" customClass="BreedCollectionViewCell" customModule="FavoriteDogs" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJa-dU-JW7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qdw-je-Jrs">
+                                                    <rect key="frame" x="50" y="50" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="breedImage" destination="iJa-dU-JW7" id="ntY-FK-N4Z"/>
+                                            <outlet property="breedImageActivityIndicator" destination="Qdw-je-Jrs" id="6N8-d3-313"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7ek-il-d5A" firstAttribute="top" secondItem="kAb-9s-1tT" secondAttribute="top" id="IBl-W8-qGx"/>
+                            <constraint firstItem="DB3-ND-KQB" firstAttribute="bottom" secondItem="kAb-9s-1tT" secondAttribute="bottom" id="UhJ-of-Yha"/>
+                            <constraint firstItem="DB3-ND-KQB" firstAttribute="top" secondItem="7ek-il-d5A" secondAttribute="bottom" id="dHd-OB-qFF"/>
+                            <constraint firstItem="DB3-ND-KQB" firstAttribute="trailing" secondItem="kAb-9s-1tT" secondAttribute="trailing" id="gLx-6l-ftI"/>
+                            <constraint firstItem="7ek-il-d5A" firstAttribute="trailing" secondItem="kAb-9s-1tT" secondAttribute="trailing" id="lVp-WZ-1hV"/>
+                            <constraint firstItem="DB3-ND-KQB" firstAttribute="leading" secondItem="kAb-9s-1tT" secondAttribute="leading" id="s5L-CZ-pSN"/>
+                            <constraint firstItem="7ek-il-d5A" firstAttribute="leading" secondItem="kAb-9s-1tT" secondAttribute="leading" id="ySj-KX-WC6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kAb-9s-1tT"/>
+                    </view>
+                    <connections>
+                        <outlet property="breedPhotoCollectionView" destination="DB3-ND-KQB" id="OTt-7l-Vwa"/>
+                        <outlet property="titleNavigationItem" destination="lH0-eQ-4Bl" id="65L-13-3rf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SGH-b6-Df2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2124.6376811594205" y="112.5"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="8ba-Gj-5XB">
+            <objects>
+                <tabBarController id="Fs0-gW-9nv" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fl8-yv-Uwh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="SPo-Rq-fo3" kind="relationship" relationship="viewControllers" id="bfz-Vi-DjN"/>
+                        <segue destination="dMu-hi-LVh" kind="relationship" relationship="viewControllers" id="VW1-GH-3VQ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JbM-V7-zIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-561" y="459"/>
+        </scene>
+        <!--All Dogs-->
+        <scene sceneID="vlI-2o-nuo">
+            <objects>
+                <navigationController id="SPo-Rq-fo3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="All Dogs" image="icons8-pets-50" id="Ukv-gE-bca"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dmt-ea-wtG">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Cff-8r-TFz" kind="relationship" relationship="rootViewController" id="KBu-zN-HDI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="soM-Cj-F5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="496" y="113"/>
+        </scene>
+        <!--Favorite Dogs-->
+        <scene sceneID="vgR-ZW-udD">
+            <objects>
+                <viewController id="dMu-hi-LVh" customClass="FavoriteDogsPhotoCollectionViewController" customModule="FavoriteDogs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ob7-H7-YRM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zv-WO-7N1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Favorites" id="kGQ-AU-exb"/>
+                                </items>
+                            </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="92B-wp-OIp">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6nW-D0-mmG">
+                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favoriteImageCell" id="1Fu-Im-H7C" customClass="FavoriteDogCollectionViewCell" customModule="FavoriteDogs" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAs-f9-asz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="favoriteDogImageView" destination="RAs-f9-asz" id="rrI-WF-kX4"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="92B-wp-OIp" firstAttribute="trailing" secondItem="JHx-Zs-icm" secondAttribute="trailing" id="9Lj-1r-wPL"/>
+                            <constraint firstItem="92B-wp-OIp" firstAttribute="leading" secondItem="JHx-Zs-icm" secondAttribute="leading" id="Ehy-vq-NJ2"/>
+                            <constraint firstItem="6Zv-WO-7N1" firstAttribute="trailing" secondItem="JHx-Zs-icm" secondAttribute="trailing" id="PWV-PY-W0G"/>
+                            <constraint firstItem="6Zv-WO-7N1" firstAttribute="leading" secondItem="JHx-Zs-icm" secondAttribute="leading" id="bxz-cV-ZWF"/>
+                            <constraint firstAttribute="bottom" secondItem="92B-wp-OIp" secondAttribute="bottom" constant="34" id="ezh-dD-E6C"/>
+                            <constraint firstItem="92B-wp-OIp" firstAttribute="top" secondItem="6Zv-WO-7N1" secondAttribute="bottom" id="ix0-oG-6P3"/>
+                            <constraint firstItem="6Zv-WO-7N1" firstAttribute="top" secondItem="JHx-Zs-icm" secondAttribute="top" id="rTM-gS-tEd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JHx-Zs-icm"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorite Dogs" image="icons8-dog-paw-print-50" id="kNt-p3-lkr"/>
+                    <connections>
+                        <outlet property="favoriteDogsCollectionView" destination="92B-wp-OIp" id="lhx-yp-8Jz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xfP-Mn-oPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="495.6521739130435" y="795.53571428571422"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-dog-paw-print-50" width="25" height="25"/>
+        <image name="icons8-pets-50" width="25" height="25"/>
+    </resources>
 </document>

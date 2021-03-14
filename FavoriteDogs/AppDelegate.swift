@@ -13,10 +13,22 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let dataController = DataController(modelName: "FavoriteDogs")
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        dataController.load()
+        
+        let tabBarController = window?.rootViewController as! UITabBarController
+        let navController = tabBarController.viewControllers?[0] as! UINavigationController
+        let tableController = navController.topViewController as! DogBreedViewController
+        tableController.dataController = dataController
+        let collectionController = tabBarController.viewControllers?[1] as! FavoriteDogsPhotoCollectionViewController
+        collectionController.dataController = dataController
+
         return true
     }
 
