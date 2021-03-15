@@ -19,16 +19,18 @@ class FavoriteDogsPhotoCollectionViewController:UIViewController, UICollectionVi
     
     override func viewDidLoad() {
         let funcTag = "viewDidLoad"
-        setupCollectionView()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupCollectionView()
         setupFetchedResultsController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        let funcTag = "viewWillDisappear"
+        print(tag, funcTag)
         fetchedResultsController = nil
         favoriteDogsCollectionView.dataSource = nil
     }
@@ -83,6 +85,8 @@ class FavoriteDogsPhotoCollectionViewController:UIViewController, UICollectionVi
             label.textAlignment = .center
             label.text = "No Images found in persistence storage!"
             favoriteDogsCollectionView.backgroundView = label
+        }else{
+            favoriteDogsCollectionView.backgroundView = nil
         }
     }
     
@@ -114,13 +118,25 @@ class FavoriteDogsPhotoCollectionViewController:UIViewController, UICollectionVi
                 let imageData = try? Data.init(contentsOf: URL(string:favDog.url!)!)
                 print(funcTag, " imageData: ", imageData)
                 DispatchQueue.main.async {
+                    favDog.image = imageData
+                    do {
+                        try self.dataController.viewContext.save()
+                    }catch {
+                        print("Error in saving image data!")
+                    }
+                    
                     let image: UIImage = UIImage(data: imageData!)!
                     //cell.setImage(src: image)
                     cell.favoriteDogImageView.image = image
+                    print(self.tag, funcTag, "Image set from url...")
                 }
             }
         } else {
-            print(tag, funcTag)
+            if let imageData = favDog.image {
+                let image = UIImage(data: imageData)!
+                cell.favoriteDogImageView.image = image
+                print(tag, funcTag, "Image set from imag data...")
+            }
         }
         return cell
     }
@@ -135,7 +151,7 @@ class FavoriteDogsPhotoCollectionViewController:UIViewController, UICollectionVi
                     print("Found image url match to delete")
                     dataController.viewContext.delete(image)
                     do {
-                        try? dataController.viewContext.save()
+                        try dataController.viewContext.save()
                         //Alert
                         let alert = UIAlertController(title: "Alert", message: "Image removed from favorites!", preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))

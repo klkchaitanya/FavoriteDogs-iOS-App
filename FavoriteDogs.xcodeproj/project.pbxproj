@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D306752925F7303900550520 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D306752825F7303900550520 /* AppDelegate.swift */; };
-		D306752B25F7303900550520 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D306752A25F7303900550520 /* ViewController.swift */; };
 		D306752E25F7303900550520 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D306752C25F7303900550520 /* Main.storyboard */; };
 		D306753125F7303900550520 /* FavoriteDogs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D306752F25F7303900550520 /* FavoriteDogs.xcdatamodeld */; };
 		D306753325F7303A00550520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D306753225F7303A00550520 /* Assets.xcassets */; };
@@ -28,7 +27,6 @@
 /* Begin PBXFileReference section */
 		D306752525F7303900550520 /* FavoriteDogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FavoriteDogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D306752825F7303900550520 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D306752A25F7303900550520 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D306752D25F7303900550520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D306753025F7303900550520 /* FavoriteDogs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteDogs.xcdatamodel; sourceTree = "<group>"; };
 		D306753225F7303A00550520 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,8 +78,6 @@
 				D306754325F7336200550520 /* Model */,
 				D306754025F732D200550520 /* Controller */,
 				D306753D25F7319A00550520 /* View */,
-				D306752825F7303900550520 /* AppDelegate.swift */,
-				D306752A25F7303900550520 /* ViewController.swift */,
 				D306752C25F7303900550520 /* Main.storyboard */,
 				D306753225F7303A00550520 /* Assets.xcassets */,
 				D306753425F7303A00550520 /* LaunchScreen.storyboard */,
@@ -104,6 +100,7 @@
 		D306754025F732D200550520 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D306752825F7303900550520 /* AppDelegate.swift */,
 				D306754125F732EC00550520 /* DogBreedViewController.swift */,
 				D3C1E03925F7DC6B00766B3E /* BreedPhotoCollectionViewController.swift */,
 				D3838C5325F8719400DD3CEF /* DataController.swift */,
@@ -208,7 +205,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D306752B25F7303900550520 /* ViewController.swift in Sources */,
 				D306753F25F731CE00550520 /* DogBreedTableViewCell.swift in Sources */,
 				D3C1E03A25F7DC6B00766B3E /* BreedPhotoCollectionViewController.swift in Sources */,
 				D32A0F9C25FA758600948225 /* FavoriteDogCollectionViewCell.swift in Sources */,

@@ -9,25 +9,51 @@
 import Foundation
 import UIKit
 import CoreData
+import Network
 
 class DogBreedViewController: UITableViewController{
     
+    let tag = "DogBreedViewController"
     var breeds: [String] = []
     @IBOutlet var breedsTableView: UITableView!
     var dataController: DataController!
+    
+    let monitor = NWPathMonitor()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         breedsTableView.delegate = self
         breedsTableView.dataSource = self
         ///setupTableView()
+        
+        monitor.pathUpdateHandler = {
+            path in
+            if path.status == .satisfied {
+                print("Connected to internet!")
+            } else {
+                print("No internet connection!")
+                self.showAlert(title: "Error", message: "No internet connection!")
+            }
+            print(path.isExpensive)
+        }
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkInternetConnection()
         if(breeds.count == 0){
             setupTableView()
         }
+    }
+    
+    func checkInternetConnection(){
+        let funcTag = "checkInternetConnection"
+        print(tag, funcTag)
+        
+
     }
     
     func setupTableView(){
@@ -53,7 +79,7 @@ class DogBreedViewController: UITableViewController{
             let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: breedsTableView.frame.width, height: breedsTableView.frame.height))
             label.numberOfLines = 2
             label.textAlignment = .center
-            label.text = "Very slow network connection!"+"\n"+"Loading breeds list.Please wait..!"
+            label.text = "Loading breeds list.Please wait..!"
             breedsTableView.backgroundView = label
         }else{
             breedsTableView.backgroundView = nil
@@ -81,7 +107,7 @@ class DogBreedViewController: UITableViewController{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let FUNC_TAG = "prepare for segue"
+        let funcTag = "prepare for segue"
         
         guard let breedPhotoCollectionViewController = segue.destination as? BreedPhotoCollectionViewController else{return}
         let breedSelected: String = sender as! String

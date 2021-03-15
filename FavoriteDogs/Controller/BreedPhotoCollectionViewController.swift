@@ -46,15 +46,21 @@ class BreedPhotoCollectionViewController: UIViewController, UICollectionViewData
     
     func getBreedImages(){
         let funcTag = "getBreedImages"
-        updateBackgroundView(load: true)
+        updateBackgroundView(load: true, labelMessage: "Slow network connection!..Dogs are on their way..Please wait..!")
         DogClient.getImagesOfDogBreed(breed: selectedBreed){
-            (imagesResponse, Error) in
-            self.updateBackgroundView(load: false)
+            (imagesResponse, error) in
+            if let err = error{
+                self.showAlert(title: "Network Problem", message: "Something went wrong downloading images of dog breed!")
+                self.updateBackgroundView(load: true, labelMessage: "Network Problem! Cant load images!")
+                return
+            }
+            self.updateBackgroundView(load: false, labelMessage: "")
             print(self.tag, " ", funcTag, " Number of breed images: ", imagesResponse.count)
             self.breedImages = imagesResponse ?? []
             DispatchQueue.main.async {
                 self.breedPhotoCollectionView.reloadData()
             }
+            
         }
     }
     
@@ -62,12 +68,12 @@ class BreedPhotoCollectionViewController: UIViewController, UICollectionViewData
         self.dismiss(animated: true, completion: nil)
     }
     
-    func updateBackgroundView(load: Bool){
+    func updateBackgroundView(load: Bool, labelMessage: String){
         if load{
             let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: breedPhotoCollectionView.frame.width, height: breedPhotoCollectionView.frame.height))
             label.numberOfLines = 2
             label.textAlignment = .center
-            label.text = "Very slow network connection!..Dogs are on their way..Please wait..!"
+            label.text = labelMessage
             breedPhotoCollectionView.backgroundView = label
         }else{
             breedPhotoCollectionView.backgroundView = nil
@@ -114,10 +120,12 @@ class BreedPhotoCollectionViewController: UIViewController, UICollectionViewData
             self.showAlert(title: "Sorry", message: "Couldn't add because selected image already exists in favorites list!")
         }else{
             //Add to favorites
+            let imageData = try? Data.init(contentsOf: URL(string:breedImages[indexPath.row])!)
+
             let favoriteDog = FavoriteDog(context: self.dataController.viewContext)
             favoriteDog.id = UUID().uuidString
             favoriteDog.creationDate = Date()
-            favoriteDog.image = nil
+            favoriteDog.image = imageData ?? nil
             favoriteDog.breed = selectedBreed
             favoriteDog.url = breedImages[indexPath.row]
             do {
